@@ -1,0 +1,44 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    background: #f0eff5;
+}
+.panel{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.panel-book,
+.panel-activity,
+.panel-personalInfo{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+.panel-book{
+    left: 0;
+    background: blue;
+}
+.panel-activity{
+    left: 100%;
+    background: yellow;
+}
+.panel-personalInfo{
+    left: 200%;
+    background: red;
+}
+.book-checked{
+    left: 0;
+}
+.activity-checked{
+    left: -100%;
+}
+.personalInfo-checked{
+    left: -200%;
+}
