@@ -137,8 +137,24 @@
         var scroll = new IScroll('.weui-tab__panel', {
             click: true, // 允许鼠标点击事件
             tap: true, // 允许触摸事件
-            hScrollbar:false,vScrollbar:false,vScroll:false,snap:true
-        })
+            hScrollbar:false,vScrollbar:false,vScroll:false,snap:true,
+            onBeforeScrollStart: function ( e ) {
+                if ( this.absDistX > (this.absDistY + 5 ) ) {
+                    e.preventDefault();
+                }
+            },
+            //解决第一次无法滑动的问题
+            onTouchEnd: function () {
+                var self = this;
+                if (self.touchEndTimeId) {
+                   clearTimeout(self.touchEndTimeId);
+                }
+                self.touchEndTimeId = setTimeout(function () {
+                    self.absDistX = 0;
+                    self.absDistY = 0;
+                }, 600);
+            }
+        });
         $('.weui-tabbar__item').eq(0).addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
         $(".panel").removeClass("activity-checked").removeClass("personalInfo-checked").addClass("book-checked");
         // 在页面内点击底部菜单时，才需要触发的操作
