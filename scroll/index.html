@@ -134,13 +134,10 @@
 
     ;(function(){
         // 页面初始化
-        var scroll = new IScroll('.panel', {
-            mouseWheel: true, // 监听鼠标滚轮事件
-        click: true, // 允许鼠标点击事件
-        tap: true, // 允许触摸事件
-        scrollbars: true, // 激活滚动条
-        fadeScrollbars: true, // 滚动条淡入淡出
-        interactiveScrollbars: true // 滚动条能拖动
+        var scroll = new IScroll('.weui-tab__panel', {
+            click: true, // 允许鼠标点击事件
+            tap: true, // 允许触摸事件
+            hScrollbar:false,vScrollbar:false,vScroll:false,snap:true
         })
         $('.weui-tabbar__item').eq(0).addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
         $(".panel").removeClass("activity-checked").removeClass("personalInfo-checked").addClass("book-checked");
