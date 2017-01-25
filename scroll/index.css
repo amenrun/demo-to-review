@@ -8,37 +8,24 @@ html,body{
 .panel{
     width: 100%;
     height: 100%;
-    position: relative;
-    left: 0;
-    top: 0;
+    overflow: hidden;
+}
+.panel-container{
+    display: inline-flex;
 }
 .panel-book,
 .panel-activity,
 .panel-personalInfo{
-    width: 100%;
-    height: 100%;
+    position: relative;
     overflow: hidden;
-    position: absolute;
-    top: 0;
+    display: inline-block;
 }
 .panel-book{
-    left: 0;
     background: blue;
 }
 .panel-activity{
-    left: 100%;
     background: yellow;
 }
 .panel-personalInfo{
-    left: 200%;
     background: red;
-}
-.book-checked{
-    left: 0;
-}
-.activity-checked{
-    left: -100%;
-}
-.personalInfo-checked{
-    left: -200%;
 }

@@ -12,42 +12,11 @@
         <div class="weui-tab__panel">
             <!-- 内容 begin -->
             <div class="panel">
-                <div id="panel-book" class="panel-book">
-                    <!-- <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul> -->
+                <div class="panel-container">
+                    <div id="panel-book" class="panel-book">订场</div>
+                    <div id="panel-activity" class="panel-activity">活动</div>
+                    <div id="panel-personalInfo" class="panel-personalInfo">我</div>
                 </div>
-                <div id="panel-activity" class="panel-activity">活动</div>
-                <div id="panel-personalInfo" class="panel-personalInfo">我</div>
             </div>
             <!-- 内容 end -->
         </div>
@@ -69,75 +38,19 @@
         <!-- 底部菜单 end -->
     </div>
 
-    <!-- <div id="container">
-        <div class="weui-search-bar" id="searchBar">
-            <form class="weui-search-bar__form">
-                <div class="weui-search-bar__box">
-                    <i class="weui-icon-search"></i>
-                    <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" />
-                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-                </div>
-                <label for="search_input" class="weui-search-bar__label" id="searchText">
-                    <i class="weui-icon-search"></i>
-                    <span>搜索</span>
-                </label>
-            </form>
-            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
-        </div>
-    </div> -->
-
 <script src="zepto-store.min.js"></script>
 <script src="iscroll-probe.min.js"></script>
 <script>
 
     ;(function(){
-        var $searchBar = $('#searchBar'),
-            $searchText = $('#searchText'),
-            $searchInput = $('#searchInput'),
-            $searchClear = $('#searchClear'),
-            $searchCancel = $('#searchCancel');
-
-        function hideSearchResult(){
-            $searchInput.val('');
-        }
-        function cancelSearch(){
-            hideSearchResult();
-            $searchBar.removeClass('weui-search-bar_focusing');
-            $searchText.show();
-        }
-
-        $searchText.on('click', function(){
-            $searchBar.addClass('weui-search-bar_focusing');
-            $searchInput.focus();
-        });
-        $searchInput
-            .on('blur', function () {
-                if(!this.value.length) cancelSearch();
-            })
-            .on('input', function(){
-                if(this.value.length) {
-                    console.log('input something');
-                } else {
-                    console.log('nothing');
-                }
-            })
-        ;
-        $searchClear.on('click', function(){
-            hideSearchResult();
-            $searchInput.focus();
-        });
-        $searchCancel.on('click', function(){
-            cancelSearch();
-            $searchInput.blur();
-        });
-    });
-
-    ;(function(){
         // 页面初始化
-        var scroll = new IScroll('.weui-tab__panel', {
+        var panelWidth = $('.panel').width(),
+            panelHeight = $('.panel').height();
+        $('.panel div[id^="panel-"]').css('width',panelWidth).css('height',panelHeight);
+        var scroll = new IScroll('.panel', {
             click: true, // 允许鼠标点击事件
             tap: true, // 允许触摸事件
-            hScrollbar:false,vScrollbar:false,vScroll:false,snap:true,
+            hScrollbar:false,vScrollbar:false,vScroll:false,snap:true,probeType:3,
             onBeforeScrollStart: function ( e ) {
                 if ( this.absDistX > (this.absDistY + 5 ) ) {
                     e.preventDefault();
@@ -156,7 +69,6 @@
             }
         });
         $('.weui-tabbar__item').eq(0).addClass('weui-bar__item_on').siblings().removeClass('weui-bar__item_on');
-        $(".panel").removeClass("activity-checked").removeClass("personalInfo-checked").addClass("book-checked");
         // 在页面内点击底部菜单时，才需要触发的操作
         $('.weui-tabbar__item').each(function(index) {
             $(this).on('click', function () {
@@ -166,24 +78,15 @@
                 switch(index) {
                     case 0:
                         console.log('book');
-                        $(".panel").
-                        removeClass("activity-checked").
-                        removeClass("personalInfo-checked").
-                        addClass("book-checked");
+
                         break;
                     case 1:
                         console.log('activity');
-                        $(".panel").
-                        removeClass("book-checked").
-                        removeClass("personalInfo-checked").
-                        addClass("activity-checked");
+
                         break;
                     case 2:
                         console.log('personalInfo');
-                        $(".panel").
-                        removeClass("book-checked").
-                        removeClass("activity-checked").
-                        addClass("personalInfo-checked");
+                        
                         break;
                     // 不设置default操作
                 }
