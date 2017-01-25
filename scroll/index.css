@@ -19,7 +19,6 @@ html,body{
 .panel-personal{
     position: relative;
     overflow: hidden;
-    display: inline-block;
 }
 .panel-book{
     background: blue;
