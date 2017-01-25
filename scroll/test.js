@@ -11,7 +11,7 @@
         click: true, // 允许鼠标点击事件
         freeScroll: true, // 允许二维同时滚动
         scrollY: false, // 禁止纵向滚动
-        tap: true, // 没有滚动时触发的事件
+        tap: 'scrollErrorFn', // 没有滚动时触发的事件
         hScrollbar:false,
         vScrollbar:false,
         vScroll:false,
