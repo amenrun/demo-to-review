@@ -1,0 +1,104 @@
+$toolbar-icon-size: 60px;
+.toolbar-list, .icon-booking, .icon-activity, .icon-personal,
+.icon-home, .icon-home:before, .icon-home:after {
+    width: $toolbar-icon-size;
+    height: $toolbar-icon-size;
+    border-radius: 50%;
+}
+.toolbar-list {
+    position: fixed;
+    right: 20px;
+    bottom: 150px;
+    z-index: 2000;
+    border-radius: $toolbar-icon-size / 2;
+    background-color: rgba(171,170,170,0.60);
+    overflow: hidden;
+    @include transition(width 0.5s);
+}
+.toolbar-list-hover {
+    width: $toolbar-icon-size * 4 + 25px;
+    .icon-home:before {
+        top: -50px;
+        opacity: 0;
+    }
+    .icon-home:after {
+        top: 0;
+        opacity: 1;
+    }
+}
+.icon-booking, .icon-activity, .icon-personal {
+    position: absolute;
+    top: 0;
+    &:before, &:after {
+        position: absolute;
+        height: $toolbar-icon-size / 2;
+        line-height: 1.6;
+        color: #fff;
+        text-align: center;
+    }
+    &:before {
+        top: 0;
+        left: $toolbar-icon-size / 4;
+        width: $toolbar-icon-size / 2;
+        font-size: ( $toolbar-icon-size - 10 ) / 2;
+    }
+    &:after {
+        bottom: 0;
+        left: 0;
+        width: $toolbar-icon-size;
+        font-size: ( $toolbar-icon-size - 10 ) / 4;
+    }
+}
+.icon-booking {
+    right: $toolbar-icon-size * 3 + 15px;
+    &:before {
+        content: "\e9b8";
+    }
+    &:after {
+        content: "订场";
+    }
+}
+.icon-activity {
+    right: $toolbar-icon-size * 2 + 10px;
+    &:before {
+        content: "\e903";
+    }
+    &:after {
+        content: "活动";
+    }
+}
+.icon-personal {
+    right: $toolbar-icon-size + 5px;
+    &:before {
+        content: "\e902";
+    }
+    &:after {
+        content: "我";
+    }
+}
+.icon-home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+
+    &:before, &:after {
+        position: absolute;
+        left: 0;
+        font-size: $toolbar-icon-size - 10;
+        line-height: $toolbar-icon-size;
+        color: #fff;
+        text-align: center;
+        @include transition(all 0.5s);
+    }
+    &:before {
+        content: "\e901";
+        top: 0;
+        opacity: 1;
+    }
+    &:after {
+        content: "\e900";
+        top: $toolbar-icon-size;
+        opacity: 0;
+    }
+}

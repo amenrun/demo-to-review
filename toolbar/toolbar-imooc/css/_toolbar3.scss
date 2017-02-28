@@ -1,0 +1,119 @@
+$toolbar-size: 52px;
+.toolbar {
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    margin-left: -$toolbar-size / 2;
+}
+.toolbar-item {
+    position: relative;
+    display: block;
+    width: $toolbar-size;
+    height: $toolbar-size;
+    margin-top: 1px;
+
+    &:after {
+        content: "";
+        position: absolute;
+        background-image: url(../img/toolbar_img.png);
+        background-repeat: no-repeat;
+        right: $toolbar-size - 6;
+        bottom: -10px;
+        width: 172px;
+        @include opacity(0);
+        @include transform-origin(95% 95%);
+        @include scale(0.01);
+        @include transition(all 1s);
+    }
+    &:hover {
+        .toolbar-btn{
+            &:before {
+                top: $toolbar-size;
+            }
+            &:after {
+                top: 0;
+            }
+        }
+        &:after {
+            @include opacity(1);
+            @include scale(1);
+        }
+    }
+}
+.toolbar-item-weixin {
+    .toolbar-btn {
+        @extend .icon-wechat;
+        &:after {
+            content: "公众\A账号";
+        }
+    }
+    &:after {
+        content: "";
+        height: 212px;
+        background-position: 0 0;
+    }
+}
+.toolbar-item-feedback {
+    .toolbar-btn {
+        @extend .icon-comment;
+        &:after {
+            content: "意见\A反馈";
+        }
+    }
+}
+.toolbar-item-app {
+    .toolbar-btn {
+        @extend .icon-mobile;
+        &:after {
+            content: "app\A下载";
+        }
+    }
+    &:after {
+        content: "";
+        height: 194px;
+        background-position: 0 -222px;
+    }
+
+}
+.toolbar-item-top {
+    .toolbar-btn {
+        @extend .icon-circle-up;
+        &:after {
+            content: "返回\A顶部";
+        }
+    }
+
+}
+.toolbar-btn {
+    &, &:before, &:after {
+        position: absolute;
+        left: 0;
+        width: $toolbar-size;
+        height: $toolbar-size;
+    }
+    top: 0;
+    overflow: hidden;
+
+    @extend [class^="icon-"];
+    &:before, &:after {
+        content: "";
+        color: #fff;
+        text-align: center;
+        @include transition(top 1s);
+    }
+
+    &:before {
+        top: 0;
+        background-color: #d0d6d9;
+        font-size: 30px;
+        line-height: $toolbar-size;
+    }
+    &:after{
+        top: $toolbar-size;
+        background-color: #98a1a6;
+        padding-top: 12px;
+        font-size: 12px;
+        line-height: 1.2;
+        white-space: pre;
+    }
+}

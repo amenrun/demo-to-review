@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>toolbar</title>
+    <!-- 引入 weui样式库 -->
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-list">
+            <a href="http://baidu.com" class="icon-booking"></a>
+            <a href="http://google.com" class="icon-activity"></a>
+            <a href="http://github.com" class="icon-personal"></a>
+            <a href="javascript:;" class="icon-home"></a>
+        </div>
+        <div id="toolbar-mask" class="weui-mask_transparent" style="display: none;"></div>
+    </div>
+
+<script src="zepto.min.js"></script>
+<script>
+    var toolbarHome = $(".icon-home"),
+        toolbarList = $(".toolbar-list"),
+        toolbarMask = $("#toolbar-mask");
+
+    toolbarHome.on("click", function() {
+        if(!toolbarList.hasClass("toolbar-list-hover")) {
+            toolbarMask.css("display", "block");
+            toolbarList.addClass("toolbar-list-hover");
+            toolbarMask.off("click").one("click", function() {
+                toolbarMask.css("display", "none");
+                toolbarList.removeClass("toolbar-list-hover");
+            });
+        }else{
+            toolbarMask.css("display", "none");
+            toolbarList.removeClass("toolbar-list-hover");
+        }
+    });
+</script>
+</body>
+</html>
